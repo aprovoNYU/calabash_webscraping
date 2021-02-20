@@ -1,0 +1,63 @@
+[
+  {
+    "op": "core/column-move",
+    "columnName": "pdfname",
+    "index": 0,
+    "description": "Move column pdfname to position 0"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "author",
+    "keyColumnName": "pdfname",
+    "separator": "|",
+    "description": "Join multi-valued cells in column author"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "issueurl",
+    "description": "Blank down cells in column issueurl"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "pdfname",
+          "expression": "value",
+          "columnName": "pdfname",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [],
+          "selectBlank": true,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdfname",
+    "index": 1,
+    "description": "Move column pdfname to position 1"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdfname",
+    "index": 2,
+    "description": "Move column pdfname to position 2"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdfname",
+    "index": 3,
+    "description": "Move column pdfname to position 3"
+  }
+]

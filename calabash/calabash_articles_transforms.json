@@ -1,0 +1,1438 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "authorbio",
+    "description": "Remove column authorbio"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "section",
+    "description": "Remove column section"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "titlegroup",
+    "description": "Remove column titlegroup"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "title",
+    "expression": "value.replace(/\\s+/,' ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column title using expression value.replace(/\\s+/,' ')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "grel:value.replace(\"by \",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column author using expression grel:value.replace(\"by \",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "title",
+    "expression": "grel:value.replace(\"»  \",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column title using expression grel:value.replace(\"»  \",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "title",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column title using expression value.trim()"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "pdfname",
+    "expression": "grel:value.partition(/[\\w\\d ]+\\.pdf/)[1]",
+    "onError": "set-to-blank",
+    "newColumnName": "PDF filename",
+    "columnInsertIndex": 1,
+    "description": "Create column PDF filename at index 1 based on column pdfname using expression grel:value.partition(/[\\w\\d ]+\\.pdf/)[1]"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "pdfname",
+    "expression": "grel:value.partition(/vol[\\d]/)[1]",
+    "onError": "set-to-blank",
+    "newColumnName": "volume",
+    "columnInsertIndex": 1,
+    "description": "Create column volume at index 1 based on column pdfname using expression grel:value.partition(/vol[\\d]/)[1]"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [],
+          "selectBlank": true,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "volume",
+    "expression": "grel:cells[\"issueurl\"].value.partition(/vol[\\d]/)[1]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column volume using expression grel:cells[\"issueurl\"].value.partition(/vol[\\d]/)[1]"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "pdfname",
+    "expression": "grel:value.partition(/no[\\d]/)[1]",
+    "onError": "set-to-blank",
+    "newColumnName": "issue",
+    "columnInsertIndex": 1,
+    "description": "Create column issue at index 1 based on column pdfname using expression grel:value.partition(/no[\\d]/)[1]"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [],
+          "selectBlank": true,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "issue",
+    "expression": "grel:cells[\"issueurl\"].value.partition(/no[\\d]/)[1]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column issue using expression grel:cells[\"issueurl\"].value.partition(/no[\\d]/)[1]"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PDF filename",
+    "newColumnName": "pdf_filename",
+    "description": "Rename column PDF filename to pdf_filename"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol1",
+                "l": "vol1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "baseColumnName": "volume",
+    "expression": "grel:\"2000-09\"",
+    "onError": "set-to-blank",
+    "newColumnName": "date-iso",
+    "columnInsertIndex": 4,
+    "description": "Create column date-iso at index 4 based on column volume using expression grel:\"2000-09\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol1",
+                "l": "vol1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "baseColumnName": "date-iso",
+    "expression": "grel:\"September 2000\"",
+    "onError": "set-to-blank",
+    "newColumnName": "date-text",
+    "columnInsertIndex": 5,
+    "description": "Create column date-text at index 5 based on column date-iso using expression grel:\"September 2000\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol1",
+                "l": "vol1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2001\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2001\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol1",
+                "l": "vol1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Spring-Summer 2001\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Spring-Summer 2001\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol2",
+                "l": "vol2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2002\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2002\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol2",
+                "l": "vol2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Fall 2002\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Fall 2002\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol2",
+                "l": "vol2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2003\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2003\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol2",
+                "l": "vol2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Summer-Fall 2003\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Summer-Fall 2003\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol3",
+                "l": "vol3"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2004\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2004\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol3",
+                "l": "vol3"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Fall-Spring 2004\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Fall-Spring 2004\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol3",
+                "l": "vol3"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2005\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2005\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol3",
+                "l": "vol3"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Fall-Winter 2005\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Fall-Winter 2005\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol4",
+                "l": "vol4"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Spring-Summer 2006\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Spring-Summer 2006\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol4",
+                "l": "vol4"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2006\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2006\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol4",
+                "l": "vol4"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Spring-Summer 2007\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Spring-Summer 2007\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol4",
+                "l": "vol4"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no2",
+                "l": "no2"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2007\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2007\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol5",
+                "l": "vol5"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-text",
+    "expression": "grel:\"Summer-Fall 2008\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-text using expression grel:\"Summer-Fall 2008\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "volume",
+          "expression": "value",
+          "columnName": "volume",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "vol5",
+                "l": "vol5"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "issue",
+          "expression": "value",
+          "columnName": "issue",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "no1",
+                "l": "no1"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "date-iso",
+    "expression": "grel:\"2008\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date-iso using expression grel:\"2008\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "issue",
+    "expression": "grel:value.replace(\"no\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column issue using expression grel:value.replace(\"no\",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "volume",
+    "expression": "grel:value.replace(\"vol\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column volume using expression grel:value.replace(\"vol\",\"\")"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdf_filename",
+    "index": 0,
+    "description": "Move column pdf_filename to position 0"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "mode": "separator",
+    "separator": " & ",
+    "regex": false,
+    "description": "Split multi-valued cells in column author"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "mode": "separator",
+    "separator": " and ",
+    "regex": false,
+    "description": "Split multi-valued cells in column author"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "mode": "separator",
+    "separator": ", ",
+    "regex": false,
+    "description": "Split multi-valued cells in column author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Michela A. Calderaro",
+          "Michela A Calderaro"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Michela A. Calderaro"
+      },
+      {
+        "from": [
+          "Anton Nimblett",
+          "Anton Niblett"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Anton Nimblett"
+      },
+      {
+        "from": [
+          "Dolace McLean",
+          "Dolace McClean"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Dolace McLean"
+      },
+      {
+        "from": [
+          "Danielle Legros Geoges",
+          "Danielle Legros Georges"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Danielle Legros Georges"
+      },
+      {
+        "from": [
+          "Nadine Rogers",
+          "Nadine Rodgers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Nadine Rogers"
+      },
+      {
+        "from": [
+          "June Spalding",
+          "June Spaulding"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "June Spalding"
+      },
+      {
+        "from": [
+          "Louis-Phillippe Dalembert",
+          "Louis-Phillipe Dalembert"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Louis-Phillippe Dalembert"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Yolaine M. St. Fort",
+          "Yolaine St. Forth"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Yolaine M. St. Fort"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Myriam J A Chancy",
+          "Myriam J. A. Chancy"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Myriam J. A. Chancy"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Michela A. Calderaro",
+          "Michelle A Calderaro"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Michela A. Calderaro"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "[A-Z] ",
+          "mode": "regex",
+          "caseSensitive": true,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "grel:value.partition(/[A-Z] /)[0] + value.partition(/[A-Z] /)[1].replace(\" \",\". \") +value.partition(/[A-Z] /)[2]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column author using expression grel:value.partition(/[A-Z] /)[0] + value.partition(/[A-Z] /)[1].replace(\" \",\". \") +value.partition(/[A-Z] /)[2]"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "[A-Z] ",
+          "mode": "regex",
+          "caseSensitive": true,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Y. C Murphy"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Y. C. Murphy"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "separator": "|",
+    "description": "Join multi-valued cells in column author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "title",
+    "expression": "grel:\"1531-6661\"",
+    "onError": "set-to-blank",
+    "newColumnName": "issn",
+    "columnInsertIndex": 9,
+    "description": "Create column issn at index 9 based on column title using expression grel:\"1531-6661\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "issn",
+    "expression": "grel:\"Calabash: a Journal of Caribbean Arts and Letters\"",
+    "onError": "set-to-blank",
+    "newColumnName": "journaltitle",
+    "columnInsertIndex": 10,
+    "description": "Create column journaltitle at index 10 based on column issn using expression grel:\"Calabash: a Journal of Caribbean Arts and Letters\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "journaltitle",
+    "expression": "grel:\"New York University. Graduate Program in Spanish & Portuguese Languages & Literatures\"",
+    "onError": "set-to-blank",
+    "newColumnName": "publisher",
+    "columnInsertIndex": 11,
+    "description": "Create column publisher at index 11 based on column journaltitle using expression grel:\"New York University. Graduate Program in Spanish & Portuguese Languages & Literatures\""
+  }
+]

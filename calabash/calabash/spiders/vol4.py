@@ -6,8 +6,9 @@ class Vol4Spider(scrapy.Spider):
     name = 'vol4'
     allowed_domains = ['www.nyu.edu/calabash/']
     start_urls = [  'http://www.nyu.edu/calabash/vol4no1/',
-    				'http://www.nyu.edu/calabash/vol4no2/',
-    				'http://www.nyu.edu/calabash/',
+                    'http://www.nyu.edu/calabash/vol4no2/',
+                    'http://www.nyu.edu/calabash/',
+
     				]
 
     def parse(self, response):

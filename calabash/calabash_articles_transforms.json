@@ -1434,5 +1434,423 @@
     "newColumnName": "publisher",
     "columnInsertIndex": 11,
     "description": "Create column publisher at index 11 based on column journaltitle using expression grel:\"New York University. Graduate Program in Spanish & Portuguese Languages & Literatures\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "author",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "author_index",
+    "columnInsertIndex": 2,
+    "description": "Create column author_index at index 2 based on column author using expression grel:value"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author_index",
+    "keyColumnName": "pdf_filename",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column author_index"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "grel:value.split(/ /)[-1] + \", \" + value.replace(value.split(/ /)[-1],\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column author_index using expression grel:value.split(/ /)[-1] + \", \" + value.replace(value.split(/ /)[-1],\"\")"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "author_index",
+          "expression": "value.length()",
+          "columnName": "author_index",
+          "from": 11,
+          "to": 33,
+          "selectNumeric": true,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Fort, Yolaine M. St. "
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "St. Fort, Yolaine M."
+      }
+    ],
+    "description": "Mass edit cells in column author_index"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "author_index",
+          "expression": "value.length()",
+          "columnName": "author_index",
+          "from": 11,
+          "to": 33,
+          "selectNumeric": true,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Rooy, Felix de "
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "de Rooy, Felix"
+      }
+    ],
+    "description": "Mass edit cells in column author_index"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "author_index",
+          "expression": "value.length()",
+          "columnName": "author_index",
+          "from": 11,
+          "to": 33,
+          "selectNumeric": true,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Yanique, By Tiphanie "
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Yanique, Tiphanie "
+      }
+    ],
+    "description": "Mass edit cells in column author_index"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column author_index using expression value.trim()"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "by",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "By Tiphanie Yanique"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tiphanie Yanique"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Campbell, Christian A.",
+          "Campbell, Christian"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Campbell, Christian A."
+      }
+    ],
+    "description": "Mass edit cells in column author_index"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Christian A. Campbell",
+          "Christian Campbell"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Christian A. Campbell"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "author",
+          "expression": "value",
+          "columnName": "author",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Francis Coke",
+                "l": "Francis Coke"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "coke",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "baseColumnName": "author_index",
+    "expression": "grel:\"ambiguous\"",
+    "onError": "set-to-blank",
+    "newColumnName": "author_problem",
+    "columnInsertIndex": 3,
+    "description": "Create column author_problem at index 3 based on column author_index using expression grel:\"ambiguous\""
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "author_index",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sekou, Lasana M.",
+          "Sekou, Lasana"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sekou, Lasana M."
+      }
+    ],
+    "description": "Mass edit cells in column author_index"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author",
+          "columnName": "author",
+          "query": "lasana",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "record-based"
+    },
+    "columnName": "author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lasana Sekou"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lasana M. Sekou"
+      }
+    ],
+    "description": "Mass edit cells in column author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "baseColumnName": "title",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "title_noquotes",
+    "columnInsertIndex": 11,
+    "description": "Create column title_noquotes at index 11 based on column title using expression grel:value"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "title_noquotes",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "\"And the Excitement Continues...\""
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "And the Excitement Continues..."
+      }
+    ],
+    "description": "Mass edit cells in column title_noquotes"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "title_noquotes",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "\"When I Die\""
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "When I Die"
+      }
+    ],
+    "description": "Mass edit cells in column title_noquotes"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "title_noquotes",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "\"Why are you taking pictures of that shit?\""
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Why are you taking pictures of that shit?"
+      }
+    ],
+    "description": "Mass edit cells in column title_noquotes"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "author",
+    "keyColumnName": "pdf_filename",
+    "separator": "|",
+    "description": "Join multi-valued cells in column author"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "author_index",
+    "keyColumnName": "pdf_filename",
+    "separator": ";",
+    "description": "Join multi-valued cells in column author_index"
   }
 ]

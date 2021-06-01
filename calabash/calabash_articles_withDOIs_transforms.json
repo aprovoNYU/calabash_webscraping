@@ -1,0 +1,748 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "Article ID",
+    "description": "Remove column Article ID"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "File",
+    "expression": "grel:\"2451/61976\"",
+    "onError": "set-to-blank",
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "description": "Create column collection at index 1 based on column File using expression grel:\"2451/61976\""
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author_index",
+    "index": 3,
+    "description": "Move column author_index to position 3"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author_index",
+    "index": 2,
+    "description": "Move column author_index to position 2"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "author_index",
+    "newColumnName": "dc.contributor.author",
+    "description": "Rename column author_index to dc.contributor.author"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdf_filename",
+    "index": 17,
+    "description": "Move column pdf_filename to position 17"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "author",
+    "description": "Remove column author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "author_problem",
+          "expression": "value",
+          "columnName": "author_problem",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "translator included (Rodrigo Rojas)",
+                "l": "translator included (Rodrigo Rojas)"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.contributor.author",
+    "expression": "grel:\"Rojas, Rodrigo\"",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.contributor.translator",
+    "columnInsertIndex": 3,
+    "description": "Create column dc.contributor.translator at index 3 based on column dc.contributor.author using expression grel:\"Rojas, Rodrigo\""
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author_problem",
+    "index": 17,
+    "description": "Move column author_problem to position 17"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "File",
+    "description": "Remove column File"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "collection",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "id",
+    "columnInsertIndex": 1,
+    "description": "Create column id at index 1 based on column collection using expression grel:null"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "id",
+    "index": 0,
+    "description": "Move column id to position 0"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "date-iso",
+    "index": 5,
+    "description": "Move column date-iso to position 5"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "date-iso",
+    "index": 4,
+    "description": "Move column date-iso to position 4"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "date-iso",
+    "newColumnName": "dc.date.issued",
+    "description": "Rename column date-iso to dc.date.issued"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.date.issued",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.description.abstract[en]",
+    "columnInsertIndex": 5,
+    "description": "Create column dc.description.abstract[en] at index 5 based on column dc.date.issued using expression grel:null"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.description.abstract[en]",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.description[en]",
+    "columnInsertIndex": 6,
+    "description": "Create column dc.description[en] at index 6 based on column dc.description.abstract[en] using expression grel:value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.description[en]",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.identifier.citation[en]",
+    "columnInsertIndex": 7,
+    "description": "Create column dc.identifier.citation[en] at index 7 based on column dc.description[en] using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 14,
+    "description": "Move column DOI to position 14"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 13,
+    "description": "Move column DOI to position 13"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 12,
+    "description": "Move column DOI to position 12"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 11,
+    "description": "Move column DOI to position 11"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 10,
+    "description": "Move column DOI to position 10"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 9,
+    "description": "Move column DOI to position 9"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 8,
+    "description": "Move column DOI to position 8"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 7,
+    "description": "Move column DOI to position 7"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 15,
+    "description": "Move column issn to position 15"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 14,
+    "description": "Move column issn to position 14"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 13,
+    "description": "Move column issn to position 13"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 12,
+    "description": "Move column issn to position 12"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 11,
+    "description": "Move column issn to position 11"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "date-text",
+    "index": 20,
+    "description": "Move column date-text to position 20"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 10,
+    "description": "Move column issn to position 10"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "issn",
+    "index": 9,
+    "description": "Move column issn to position 9"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "issn",
+    "newColumnName": "dc.identifier.issn",
+    "description": "Rename column issn to dc.identifier.issn"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.identifier.issn",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.identifier.uri",
+    "columnInsertIndex": 10,
+    "description": "Create column dc.identifier.uri at index 10 based on column dc.identifier.issn using expression grel:null"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.identifier.uri",
+    "expression": "grel:\"en\"",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.language.iso[en]",
+    "columnInsertIndex": 11,
+    "description": "Create column dc.language.iso[en] at index 11 based on column dc.identifier.uri using expression grel:\"en\""
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "publisher",
+    "newColumnName": "dc.publisher[en]",
+    "description": "Rename column publisher to dc.publisher[en]"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 18,
+    "description": "Move column dc.publisher[en] to position 18"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 17,
+    "description": "Move column dc.publisher[en] to position 17"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 16,
+    "description": "Move column dc.publisher[en] to position 16"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 15,
+    "description": "Move column dc.publisher[en] to position 15"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 14,
+    "description": "Move column dc.publisher[en] to position 14"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 13,
+    "description": "Move column dc.publisher[en] to position 13"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.publisher[en]",
+    "index": 12,
+    "description": "Move column dc.publisher[en] to position 12"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.publisher[en]",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.subject[en]",
+    "columnInsertIndex": 13,
+    "description": "Create column dc.subject[en] at index 13 based on column dc.publisher[en] using expression grel:null"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.subject[en]",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.title.alternative[en]",
+    "columnInsertIndex": 14,
+    "description": "Create column dc.title.alternative[en] at index 14 based on column dc.subject[en] using expression grel:value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.title.alternative[en]",
+    "expression": "grel:\"Article\"",
+    "onError": "set-to-blank",
+    "newColumnName": "dc.type[en]",
+    "columnInsertIndex": 15,
+    "description": "Create column dc.type[en] at index 15 based on column dc.title.alternative[en] using expression grel:\"Article\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.type[en]",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "prism.endingPage[en]",
+    "columnInsertIndex": 16,
+    "description": "Create column prism.endingPage[en] at index 16 based on column dc.type[en] using expression grel:null"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "issue",
+    "newColumnName": "prism.issueIdentifier[en]",
+    "description": "Rename column issue to prism.issueIdentifier[en]"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "journaltitle",
+    "newColumnName": "prism.publicationName[en]",
+    "description": "Rename column journaltitle to prism.publicationName[en]"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "prism.publicationName[en]",
+    "index": 22,
+    "description": "Move column prism.publicationName[en] to position 22"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "prism.publicationName[en]",
+    "index": 21,
+    "description": "Move column prism.publicationName[en] to position 21"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "prism.publicationName[en]",
+    "index": 20,
+    "description": "Move column prism.publicationName[en] to position 20"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "prism.publicationName[en]",
+    "index": 19,
+    "description": "Move column prism.publicationName[en] to position 19"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "prism.publicationName[en]",
+    "index": 18,
+    "description": "Move column prism.publicationName[en] to position 18"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "prism.publicationName[en]",
+    "expression": "grel:null",
+    "onError": "set-to-blank",
+    "newColumnName": "prism.startingPage[en]",
+    "columnInsertIndex": 19,
+    "description": "Create column prism.startingPage[en] at index 19 based on column prism.publicationName[en] using expression grel:null"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "volume",
+    "newColumnName": "prism.volume[en]",
+    "description": "Rename column volume to prism.volume[en]"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 23,
+    "description": "Move column title_noquotes to position 23"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 22,
+    "description": "Move column title_noquotes to position 22"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 21,
+    "description": "Move column title_noquotes to position 21"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 20,
+    "description": "Move column title_noquotes to position 20"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 19,
+    "description": "Move column title_noquotes to position 19"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 18,
+    "description": "Move column title_noquotes to position 18"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 17,
+    "description": "Move column title_noquotes to position 17"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 16,
+    "description": "Move column title_noquotes to position 16"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title_noquotes",
+    "index": 15,
+    "description": "Move column title_noquotes to position 15"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "title_noquotes",
+    "newColumnName": "dc.title[en]",
+    "description": "Rename column title_noquotes to dc.title[en]"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdf_filename",
+    "index": 24,
+    "description": "Move column pdf_filename to position 24"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdf_filename",
+    "index": 23,
+    "description": "Move column pdf_filename to position 23"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pdf_filename",
+    "index": 22,
+    "description": "Move column pdf_filename to position 22"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "dc.contributor.author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Simón, Monique S.",
+          "Simon, Monique S."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Simón, Monique S."
+      }
+    ],
+    "description": "Mass edit cells in column dc.contributor.author"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "dc.contributor.author",
+          "columnName": "dc.contributor.author",
+          "query": ";",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "dc.contributor.author",
+    "expression": "grel:value.replace(\";\",\"||\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column dc.contributor.author using expression grel:value.replace(\";\",\"||\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "id",
+    "expression": "grel:\"+\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column id using expression grel:\"+\""
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "dc.description.abstract[en]",
+    "description": "Remove column dc.description.abstract[en]"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc.contributor.author",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "author_citation",
+    "columnInsertIndex": 3,
+    "description": "Create column author_citation at index 3 based on column dc.contributor.author using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "DOI",
+    "index": 0,
+    "description": "Move column DOI to position 0"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "author_citation",
+    "keyColumnName": "DOI",
+    "mode": "separator",
+    "separator": "||",
+    "regex": false,
+    "description": "Split multi-valued cells in column author_citation"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "author_citation",
+    "expression": "grel:value.match(/(.*), (.*)/).reverse().join(\" \")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column author_citation using expression grel:value.match(/(.*), (.*)/).reverse().join(\" \")"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "author_citation",
+    "keyColumnName": "DOI",
+    "separator": ", ",
+    "description": "Join multi-valued cells in column author_citation"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "DOI",
+    "newColumnName": "dc.identifier.DOI",
+    "description": "Rename column DOI to dc.identifier.DOI"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "author_citation",
+          "columnName": "author_citation",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "dc.identifier.citation[en]",
+    "expression": "grel:cells[\"author_citation\"].value +\", \" + \"\\\"\" + cells[\"dc.title[en]\"].value + \",\\\" \" + cells[\"prism.publicationName[en]\"].value + \" \" + cells[\"prism.volume[en]\"].value + \", no. \" + cells[\"prism.issueIdentifier[en]\"].value + \" (\" + cells[\"date-text\"].value+\")\"+\", \" + cells[\"dc.identifier.DOI\"].value",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column dc.identifier.citation[en] using expression grel:cells[\"author_citation\"].value +\", \" + \"\\\"\" + cells[\"dc.title[en]\"].value + \",\\\" \" + cells[\"prism.publicationName[en]\"].value + \" \" + cells[\"prism.volume[en]\"].value + \", no. \" + cells[\"prism.issueIdentifier[en]\"].value + \" (\" + cells[\"date-text\"].value+\")\"+\", \" + cells[\"dc.identifier.DOI\"].value"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "dc.identifier.uri",
+    "description": "Remove column dc.identifier.uri"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "dc.subject[en]",
+    "description": "Remove column dc.subject[en]"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "dc.title.alternative[en]",
+    "description": "Remove column dc.title.alternative[en]"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prism.endingPage[en]",
+    "description": "Remove column prism.endingPage[en]"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prism.startingPage[en]",
+    "description": "Remove column prism.startingPage[en]"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author_citation",
+    "index": 22,
+    "description": "Move column author_citation to position 22"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 1,
+    "description": "Move column dc.identifier.DOI to position 1"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 2,
+    "description": "Move column dc.identifier.DOI to position 2"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 3,
+    "description": "Move column dc.identifier.DOI to position 3"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 4,
+    "description": "Move column dc.identifier.DOI to position 4"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 5,
+    "description": "Move column dc.identifier.DOI to position 5"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 6,
+    "description": "Move column dc.identifier.DOI to position 6"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "dc.identifier.DOI",
+    "index": 7,
+    "description": "Move column dc.identifier.DOI to position 7"
+  }
+]
